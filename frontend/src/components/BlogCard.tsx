@@ -38,7 +38,7 @@ export const BlogCard = ({
         <div className="text-2xl font-bold mt-2">{title}</div>
         <div className="text-md mt-1">{content.slice(0, 500) + "..."}</div>
         <div className="text-slate-600 text-sm mt-2">{`${Math.ceil(
-          content.length / 100
+          content.split(" ").length / 100
         )} minute(s) read`}</div>
         <div className="bg-slate-200 h-1 w-full mt-4"></div>
       </div>
