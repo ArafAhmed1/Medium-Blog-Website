@@ -1,6 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export const AppBar = () => {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!open) return;
+      const target = e.target as Node | null;
+      if (menuRef.current && target && !menuRef.current.contains(target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [open]);
+
+  function handleSignOut() {
+    try {
+      localStorage.removeItem("token");
+    } catch {
+      /* ignore errors clearing token */
+    }
+    setOpen(false);
+    navigate("/signin");
+  }
+
   return (
     <div className="py-3 border-b border-gray-300 flex justify-between px-10">
       <div className="font-extrabold text-3xl">
@@ -17,8 +45,33 @@ export const AppBar = () => {
             </button>
           </Link>
         </div>
-        <div className="flex justify-center flex-col">
-          <AvatarAppBar name="Araf" />
+        <div className="flex justify-center flex-col relative" ref={menuRef}>
+          <button
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+            title="Account menu"
+          >
+            <AvatarAppBar name="Araf" />
+          </button>
+
+          {open ? (
+            <div
+              role="menu"
+              className="absolute -right-4 top-12 w-max rounded-md border border-gray-200 bg-white shadow-md py-1 z-50"
+            >
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="text-left px-2 py-1.5 text-sm font-extrabold text-gray-800 hover:bg-gray-50"
+                role="menuitem"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

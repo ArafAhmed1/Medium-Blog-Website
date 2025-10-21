@@ -12,9 +12,7 @@ export const Blog = () => {
     return (
       <div>
         <AppBar />
-        <div>
-          <FullBlogSkeleton />
-        </div>
+        <FullBlogSkeleton />
       </div>
     );
   }

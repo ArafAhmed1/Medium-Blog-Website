@@ -35,7 +35,6 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
 export function FullBlogSkeleton() {
   return (
     <div>
-      <AppBar />
       <div className="flex justify-center flex-col">
         <div className="grid grid-cols-4 px-20 mt-20 w-full">
           <div className="col-span-3 pr-30">
