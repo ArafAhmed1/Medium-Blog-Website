@@ -30,12 +30,12 @@ export const AppBar = () => {
   }
 
   return (
-    <div className="py-3 border-b border-gray-300 flex justify-between px-10">
+    <div className="py-3 border-b border-gray-300 flex justify-between px-5 lg:px-10">
       <div className="font-extrabold text-3xl">
         <Link to={"/blogs"}>Medium</Link>
       </div>
       <div className="flex">
-        <div className="pr-5 flex justify-center flex-col">
+        <div className="pr-2 flex justify-center flex-col">
           <Link to="/post">
             <button
               type="button"
@@ -45,7 +45,7 @@ export const AppBar = () => {
             </button>
           </Link>
         </div>
-        <div className="flex justify-center flex-col relative" ref={menuRef}>
+        <div className="flex justify-center flex-col relative">
           <button
             type="button"
             aria-haspopup="menu"

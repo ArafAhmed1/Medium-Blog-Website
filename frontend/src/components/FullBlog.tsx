@@ -5,15 +5,15 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
     <div>
       <AppBar />
       <div className="flex justify-center flex-col">
-        <div className="grid grid-cols-4 px-20 mt-20 w-full">
-          <div className="col-span-3 pr-30">
+        <div className="grid grid-cols-1 lg:grid-cols-4 px-4 lg:px-20 mt-20 w-full gap-8">
+          <div className="lg:col-span-3">
             <div className="text-5xl font-extrabold">{blog.title}</div>
             <div className="py-3 font-thin text-black flex justify-center flex-col">
               Posted on 21 Oct 2025
             </div>
             <div className="mt-2">{blog.content}</div>
           </div>
-          <div className="col-span-1">
+          <div className="lg:col-span-1">
             <div className="my-5 text-xl font-bold text-slate-500">Author</div>
             <div className="flex">
               <AvatarAppBar name={blog.author.name || "Anonymous"} />
@@ -36,7 +36,7 @@ export function FullBlogSkeleton() {
   return (
     <div>
       <div className="flex justify-center flex-col">
-        <div className="grid grid-cols-4 px-20 mt-20 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-4 px-4 lg:px-20 mt-20 w-full gap-8">
           <div className="col-span-3 pr-30">
             <div className="h-16 w-2/3 bg-gray-200 rounded mb-4 animate-pulse" />{" "}
             {/* Title */}

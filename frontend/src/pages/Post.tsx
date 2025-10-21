@@ -27,7 +27,7 @@ export const Post = () => {
   return (
     <div className="">
       <AppBar />
-      <div className="flex justify-center w-full mt-10">
+      <div className="flex justify-center w-full mt-10 px-3">
         <div className="max-w-4xl w-full">
           <div>
             <textarea
@@ -42,7 +42,7 @@ export const Post = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center w-full mt-5">
+      <div className="flex justify-center w-full mt-5 px-3">
         <div className="max-w-4xl w-full">
           <div>
             <textarea
@@ -57,7 +57,7 @@ export const Post = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center w-full mt-10">
+      <div className="flex justify-center w-full mt-10 px-3">
         <div className="max-w-4xl w-full">
           <button
             type="submit"
