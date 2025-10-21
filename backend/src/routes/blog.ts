@@ -53,7 +53,7 @@ blogRouter.post('/', async (c) => {
   const {success} = createBlogInput.safeParse(body);
   if(!success){
     c.status(411);
-    return c.json({message: "Incorrect input(s)"})
+    return c.json({message: "Incorrect input(s)"}) 
   }
 
   const prisma = getPrisma(c.env.DATABASE_URL);
@@ -95,7 +95,18 @@ blogRouter.put('/:id', async (c) => {
 
 blogRouter.get('/bulk', async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
-  const blogs = await prisma.post.findMany();
+  const blogs = await prisma.post.findMany({
+    select: {
+      content: true,
+      title: true,
+      id: true,
+      author: {
+        select:{
+          name: true
+        }
+      }
+    }
+  });
   return c.json({blogs})
 })
 
@@ -103,8 +114,22 @@ blogRouter.get('/:id', async (c) => {
   const id = c.req.param("id")
   const prisma = getPrisma(c.env.DATABASE_URL);
 
-  try {const blog = await prisma.post.findFirst({ where: { id}});
-  return c.json({blog})}
+  try {
+    const blog = await prisma.post.findFirst({
+      where: { id },
+      select: {
+        content: true,
+        title: true,
+        id: true,
+        author: {
+          select:{
+            name: true
+          }
+        }
+      }
+    });
+    return c.json({blog})
+  }
   catch(e){
     c.status(411);
     return c.json({message: "Error while fetching the blog post"})
