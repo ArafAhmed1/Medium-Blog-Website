@@ -1,11 +1,11 @@
-import { AppBar, AvatarAppBar } from "./AppBar";
+import { AppBar } from "./AppBar";
 import type { Blog } from "../hooks/index";
 export const FullBlog = ({ blog }: { blog: Blog }) => {
   return (
     <div>
       <AppBar />
       <div className="flex justify-center flex-col">
-        <div className="grid grid-cols-1 lg:grid-cols-4 px-4 lg:px-20 mt-20 w-full gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 px-4 lg:px-20 mt-10 lg:mt-20 w-full gap-8">
           <div className="lg:col-span-3">
             <div className="text-5xl font-extrabold">{blog.title}</div>
             <div className="py-3 font-thin text-black flex justify-center flex-col">
@@ -16,7 +16,7 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
           <div className="lg:col-span-1">
             <div className="my-5 text-xl font-bold text-slate-500">Author</div>
             <div className="flex">
-              <AvatarAppBar name={blog.author.name || "Anonymous"} />
+              <Avatar name={blog.author.name || "Anonymous"} />
               <div className="flex justify-center flex-col font-bold text-xl pl-5">
                 {blog.author.name || "Anonymous"}
               </div>
@@ -72,6 +72,16 @@ export function FullBlogSkeleton() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Avatar({ name }: { name: string }) {
+  return (
+    <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+      <span className="text-white text-xl font-extrabold dark:text-gray-300">
+        {name[0]}
+      </span>
     </div>
   );
 }

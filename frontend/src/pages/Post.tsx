@@ -62,7 +62,7 @@ export const Post = () => {
           <button
             type="submit"
             onClick={post}
-            className="flex justify-center w-40 rounded-xl bg-green-700 px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-green-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="cursor-pointer flex justify-center w-40 rounded-xl bg-green-700 px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-green-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           >
             Post
           </button>

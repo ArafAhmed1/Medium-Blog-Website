@@ -30,31 +30,31 @@ export const AppBar = () => {
   }
 
   return (
-    <div className="py-3 border-b border-gray-300 flex justify-between px-5 lg:px-10">
+    <div className="py-3 border-b border-gray-300 flex justify-between items-center px-5 lg:px-10">
       <div className="font-extrabold text-3xl">
         <Link to={"/blogs"}>Medium</Link>
       </div>
-      <div className="flex">
-        <div className="pr-2 flex justify-center flex-col">
+      <div className="flex items-center">
+        <div className="pr-5">
           <Link to="/post">
             <button
               type="button"
-              className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-extrabold rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              className="cursor-pointer text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-extrabold rounded-full text-sm px-5 py-2.5 text-center"
             >
               Post Blog
             </button>
           </Link>
         </div>
-        <div className="flex justify-center flex-col relative">
+        <div className="relative" ref={menuRef}>
           <button
             type="button"
             aria-haspopup="menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+            className="rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
             title="Account menu"
           >
-            <AvatarAppBar name="Araf" />
+            <AvatarAppBar />
           </button>
 
           {open ? (
@@ -65,7 +65,7 @@ export const AppBar = () => {
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="text-left px-2 py-1.5 text-sm font-extrabold text-gray-800 hover:bg-gray-50"
+                className="cursor-pointer text-left px-2 py-1.5 text-sm font-extrabold text-gray-800 hover:bg-gray-50"
                 role="menuitem"
               >
                 Sign out
@@ -78,12 +78,21 @@ export const AppBar = () => {
   );
 };
 
-export function AvatarAppBar({ name }: { name: string }) {
+export function AvatarAppBar() {
   return (
-    <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-      <span className="text-white text-xl font-extrabold dark:text-gray-300">
-        {name[0]}
-      </span>
+    <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+      <svg
+        className="absolute w-12 h-12 text-gray-400 -left-1"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
     </div>
   );
 }

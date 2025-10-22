@@ -23,7 +23,7 @@ export const Blogs = () => {
   return (
     <div>
       <AppBar />
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-5 lg:mt-10">
         <div className="max-w-3xl px-5 lg:px-0">
           {blogs.map((blog) => (
             <BlogCard
