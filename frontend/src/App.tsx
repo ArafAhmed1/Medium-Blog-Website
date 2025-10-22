@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import type { ReactElement } from "react";
 import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import { Blog } from "./pages/Blog";
@@ -10,22 +11,44 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<RootRedirect />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Blogs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/post"
+            element={
+              <ProtectedRoute>
+                <Post />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/blog/:id"
+            element={
+              <ProtectedRoute>
+                <Blog />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-function RootRedirect() {
+function ProtectedRoute({ children }: { children: ReactElement }) {
   const token = localStorage.getItem("token");
-  const to = token ? "/blogs" : "/signin";
-  return <Navigate to={to} replace />;
+  if (!token) {
+    return <Navigate to="/signin" replace />;
+  }
+  return children;
 }
 
 export default App;

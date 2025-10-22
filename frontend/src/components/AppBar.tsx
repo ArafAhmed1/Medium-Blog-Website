@@ -32,7 +32,7 @@ export const AppBar = () => {
   return (
     <div className="py-3 border-b border-gray-300 flex justify-between items-center px-5 lg:px-10">
       <div className="font-extrabold text-3xl">
-        <Link to={"/blogs"}>Medium</Link>
+        <Link to={"/"}>Medium</Link>
       </div>
       <div className="flex items-center">
         <div className="pr-5">
