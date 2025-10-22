@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import { Blog } from "./pages/Blog";
@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Signin />} />
+          <Route path="/" element={<RootRedirect />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/post" element={<Post />} />
@@ -20,6 +20,12 @@ function App() {
       </BrowserRouter>
     </>
   );
+}
+
+function RootRedirect() {
+  const token = localStorage.getItem("token");
+  const to = token ? "/blogs" : "/signin";
+  return <Navigate to={to} replace />;
 }
 
 export default App;
